@@ -15,6 +15,7 @@ import {
 import { config } from "../../config";
 
 const Header2 = () => {
+
   const { currentUser } = useSelector((state) => state.user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -28,10 +29,10 @@ const Header2 = () => {
   const [windowSize, setWindowSize] = useState(window.innerWidth ?? 0);
 
   const closeNavMenu = useCallback(() => setIsMenuOpen(false), []);
-  const toggleNavMenu = useCallback(
-    () => setIsMenuOpen((prevState) => !prevState),
-    []
-  );
+
+  const toggleNavMenu = useCallback(() => {
+    setIsMenuOpen((prevState) => !prevState)
+  }, [])
 
   const smallScreen = () => windowSize < 1024;
 
@@ -93,18 +94,19 @@ const Header2 = () => {
 
   return (
     <>
-    <header className="bg-white border-b fixed top-0 left-0 z-50 right-0">
-      <div className="contain mx-auto px-4 flex items-center justify-between ">
-        <div className="">
+    <header className="sticky top-0 left-0 right-0 z-50 w-full bg-white border-b">
+
+      <div className="contain mx-auto px-4 flex items-center justify-between">
+        <div>
           <Link to="/" className="object-contain">
             <img
               src="..\logo\ADLM Studio Logo PNG-07.png"
               alt="adlmlogo"
-              className="w-16 h-16 lg:w-[95px] lg:h-[90px] pointer-events-none"
+              className="w-16 h-16 lg:w-[95px] lg:h-[87px] pointer-events-none"
             />
           </Link>
         </div>
-        <nav className="hidden bg-white md:flex">
+        <nav className="hidden md:flex">
           <ul className="flex items-center text-white justify-center font-semibold ">
             <li onClick={closeNavMenu} className="relative group px-1 py-2">
               <Link
@@ -273,8 +275,8 @@ const Header2 = () => {
 
       {/* MOBILE */}
       {isMenuOpen && (
-        <nav className="absolute h-screen w-full top-16 z-50  bg-white left-0 flex flex-col md:hidden ">
-          <ul className="flex flex-col items-center gap-y-4 text-white font-semibold ">
+        <nav className="w-full h-dvh border-t flex flex-col md:hidden relative ">
+          <ul className="flex flex-col items-center gap-y-4 text-white font-semibold my-5 ">
             <li onClick={closeNavMenu} className="relative group px-1 py-2">
               <Link
                 to="/market"

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom'
-import Header2 from '../../components/Header2'
-import Footer from '../../components/Footer'
-import PageLoader from '../../components/PageLoader'
+import React, { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import Header2 from '../../components/Header2';
+import Footer from '../../components/Footer';
+import PageLoader from '../../components/PageLoader';
 
 const MainLayout = () => {
 
@@ -11,20 +11,19 @@ const MainLayout = () => {
   useEffect(() => {
     if(isLoading) {
       setTimeout(() => {
-        setIsLoading(false)
-      }, 2000)
+        setIsLoading(false);
+      }, 2000);
     }
-  }, [isLoading])
+  }, [isLoading]);
 
   if(isLoading) {
     return <PageLoader />
   }
 
-
   return (
-    <div className='h-full flex flex-col bg-[#ece8e8]'>
-        <Header2  />
-        <main className='mt-12 lg:mt-20 h-full'>
+    <div className='flex flex-col bg-gray-100'>
+        <Header2 />
+        <main className='h-full'>
             <Outlet />
         </main>
         <Footer />
