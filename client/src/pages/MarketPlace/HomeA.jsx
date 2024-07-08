@@ -18,7 +18,7 @@ export default function HomeA() {
     <div className="">
       {/* Top Section */}
       <div className="w-full text-center md:text-start">
-        <div className="flex flex-col lg:flex-row lg:justify-between  px-4 sm:px-0 lg:pl-10  gap-5">
+        <div className="flex flex-col lg:flex-row lg:justify-between px-4 sm:px-0 lg:pl-10  gap-5">
           <div className="flex flex-col items-center lg:items-start gap-5 lg:mt-[50px] mt-5 p-5 ">
             <h1 className="text-5xl text-center lg:text-start font-bold md:text-6xl font-[DMSans] w-full">
               Construction

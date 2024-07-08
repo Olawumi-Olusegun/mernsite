@@ -20,7 +20,7 @@ export default function Home() {
     <main className="h-full">
       {/* Top Section */}
       <div className="w-full text-center md:text-start">
-        <div className="flex flex-col lg:flex-row lg:justify-between lg:py-16 px-4 sm:px-0 lg:pl-10  gap-5">
+        <div className="flex flex-col lg:flex-row lg:justify-between px-4 sm:px-0 lg:pl-10  gap-5">
           <div className="flex flex-col items-center lg:items-start gap-5 lg:mt-[50px] mt-5 p-5 ">
             <div className="flex rounded-lg bg-[#DBEFFF] text-black p-3  justify-center gap-3 lg:w-[280px]">
               <Link
