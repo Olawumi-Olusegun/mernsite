@@ -56,6 +56,7 @@ export default function ProfileSideBar() {
 
   const handleDeleteUser = async () => {
     try {
+      
       dispatch(deleteUserStart());
 
       const res = await fetch(
@@ -67,13 +68,14 @@ export default function ProfileSideBar() {
 
       const data = await res.json();
 
-      if (data.success === false) {
-        dispatch(deleteUserFaliure(data.message));
+      if (!res.ok) {
+        toast.error(data?.message);
         return;
       }
 
       dispatch(deleteUserSuccess(data));
-      navigate("/");
+      navigate("/", {replace: true});
+      navigate(0);
     } catch (error) {
       dispatch(deleteUserFaliure(error.message));
     }
@@ -107,6 +109,7 @@ export default function ProfileSideBar() {
           credentials: "include",
         }
       );
+
       const data = await res.json();
 
       setUserProducts(data);
@@ -127,7 +130,7 @@ export default function ProfileSideBar() {
   }, [currentPath]);
 
   return (
-    <div className="">
+    <aside>
       {/* Desktop Sidebar */}
       <div className="hidden rounded w-64 flex-shrink-0 md:flex flex-col bg-[#FFFFFF]">
         <button
@@ -279,6 +282,6 @@ export default function ProfileSideBar() {
           </div>
         )}
       </div>
-    </div>
+    </aside>
   );
 }

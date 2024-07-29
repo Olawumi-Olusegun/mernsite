@@ -15,9 +15,8 @@ import Marketplace from "../../components/MarketPlace";
 
 export default function HomeA() {
   return (
-    <div className="">
-      {/* Top Section */}
-      <div className="w-full text-center md:text-start">
+    <div className="w-full">
+      <div className="w-full text-center md:text-start bg-white">
         <div className="flex flex-col lg:flex-row lg:justify-between px-4 sm:px-0 lg:pl-10  gap-5">
           <div className="flex flex-col items-center lg:items-start gap-5 lg:mt-[50px] mt-5 p-5 ">
             <h1 className="text-5xl text-center lg:text-start font-bold md:text-6xl font-[DMSans] w-full">
@@ -43,15 +42,9 @@ export default function HomeA() {
           </div>
         </div>
       </div>
-      {/* Explore Market Place */}
       <div className="w-full flex flex-col">
-        {/* Use Marketplace component */}
         <Marketplace />
       </div>
-
-      {/* Integration */}
-
-      {/* Ready to serve */}
       <div className=" my-10 lg:my-[160px] p-5 lg:mx-[190px] ">
         <div className="flex flex-col gap-3">
           <h2 className="font-bold text-5xl md:text-[56px] line-clamp-1">
@@ -115,10 +108,6 @@ export default function HomeA() {
           </div>
         </div>
       </div>
-
-      {/* Client Reviews */}
-
-      {/* News Letter */}
     </div>
   );
 }

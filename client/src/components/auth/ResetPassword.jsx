@@ -13,6 +13,7 @@ const ResetPassword = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     const handleChangeAuthUrl = (urlString) => {
+        window.scrollTo(0,0);
         navigate(`?auth=${urlString}`);
     }
 
@@ -56,7 +57,7 @@ const ResetPassword = () => {
   return (
     <>
       <h1 className="text-lg leading-6 font-medium text-gray-900 py-2">Forgot Password</h1>
-      <form onSubmit={handleSubmit} id="forgot-password" >
+      <form onSubmit={handleSubmit} id="forgot-password" className='w-full flex flex-col' >
       <input
         type="email"
         placeholder="Enter your email"
@@ -68,13 +69,13 @@ const ResetPassword = () => {
         onChange={handleChange}
         required
       />
-      <button
-        type="button"
-        className="text-sm text-center w-full text-blue-600 my-3 hover:underline "
-        onClick={() => handleChangeAuthUrl("sign-in")}
-      >
-        Login with email and password?
-      </button>
+        <button
+          type="button"
+          className="text-sm text-center w-max mx-auto text-blue-600 my-3 hover:underline "
+          onClick={() => handleChangeAuthUrl("sign-in")}
+        >
+          Login with email and password?
+        </button>
       <button
         type="submit"
         disabled={isLoading}

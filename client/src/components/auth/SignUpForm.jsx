@@ -17,6 +17,7 @@ const SignUpForm = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     const handleChangeAuthUrl = (urlString) => {
+        window.scrollTo(0,0);
         navigate(`?auth=${urlString}`);
     }
 
@@ -67,7 +68,7 @@ const SignUpForm = () => {
           <h1 className="text-lg leading-6 font-medium text-gray-900">Sign Up</h1>
           <p className="text-sm text-gray-500 my-2">Sign up to sell on ADLM</p>
 
-          <form onSubmit={handleSubmit} className="mt-2">
+          <form onSubmit={handleSubmit} className="mt-2 w-full flex flex-col">
             <input
               type="text"
               placeholder="Username"
@@ -120,7 +121,7 @@ const SignUpForm = () => {
           <div className="flex my-5 mx-auto max-w-lg gap-2">
             <p>Already have an account?</p>
             <button type='button' onClick={() => handleChangeAuthUrl("sign-in")}>
-              <span className="text-blue-600">Sign in</span>
+              <span className="text-blue-600">Signin</span>
             </button>
           </div>
     </>

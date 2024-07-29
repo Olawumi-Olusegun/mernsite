@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CATEGORY_DATA } from "../constants/data";
+import { CATEGORY_DATA, types, units } from "../constants/data";
 import { PiSpinnerGapBold } from "react-icons/pi";
 
 const CreateProductStageTwo = ({
@@ -16,8 +16,7 @@ const CreateProductStageTwo = ({
   onhandleSubCategoryChange,
 }) => {
 
-  const units = ["nr", "bags", "tonnes", "m", "m2", "m3"];
-  const types = ["Material", "Labour"];
+
 
   const [selectedSubCategory, setSelectedSubCategory] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");

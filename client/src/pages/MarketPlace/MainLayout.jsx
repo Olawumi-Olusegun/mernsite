@@ -21,9 +21,9 @@ const MainLayout = () => {
   }
 
   return (
-    <div className='flex flex-col bg-gray-100'>
+    <div className=' w-full min-h-dvh grid grid-rows-[auto_1fr_auto] bg-gray-100'>
         <Header2 />
-        <main className='h-full'>
+        <main className='w-full'>
             <Outlet />
         </main>
         <Footer />

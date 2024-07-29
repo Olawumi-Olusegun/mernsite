@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { signInFaliure, signInStart, signInSuccess } from '../../redux/user/userSlice';
-import { config } from '../../../config';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import { PiSpinnerGapBold } from "react-icons/pi";
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { signInFaliure, signInStart, signInSuccess } from '../../redux/user/userSlice';
+import { config } from '../../../config';
 import OAuth from './OAuth';
 
 
 const SignInForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
   
     const [formInput, setFormInput] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const [isLoading, setIsLoading] = useState(false)
@@ -36,6 +36,7 @@ const SignInForm = () => {
   };
 
     const handleChangeAuthUrl = (urlString) => {
+        window.scrollTo(0,0);
         navigate(`?auth=${urlString}`);
     }
 
@@ -78,7 +79,7 @@ const SignInForm = () => {
             Sign In
         </h3>
         <p className="text-sm text-gray-500">Welcome Back</p>
-    <form onSubmit={handleSubmit} className="mt-2" >
+    <form onSubmit={handleSubmit} className="mt-2 w-full flex flex-col" >
         <input
         type="email"
         placeholder="Email"
@@ -104,7 +105,7 @@ const SignInForm = () => {
 
         <button
         type="button"
-        className="text-sm text-blue-600 mt-3 hover:underline"
+        className="text-sm text-left w-max text-blue-600 mt-3 hover:underline"
         onClick={() => handleChangeAuthUrl("reset-password")}
         >
         Forgot Password?
@@ -129,6 +130,7 @@ const SignInForm = () => {
         <button type='button' onClick={() => handleChangeAuthUrl("sign-up")} className="text-[#828282]">
           <span className="text-blue-600">Signup</span>
         </button>
+        
         </div>
     
     </>

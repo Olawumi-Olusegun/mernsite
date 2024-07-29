@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CATEGORY_DATA } from "../constants/data";
+import { CATEGORY_DATA, types, units } from "../constants/data";
 
 const UpdateProductStageTwo = ({
   previousStep,
@@ -14,8 +14,7 @@ const UpdateProductStageTwo = ({
   handleCategoryChange,
   onhandleSubCategoryChange,
 }) => {
-  const units = ["nr", "bags", "tonnes", "m", "m2", "m3"];
-  const types = ["Material", "Labour"];
+
 
   const [selectedSubCategory, setSelectedSubCategory] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");

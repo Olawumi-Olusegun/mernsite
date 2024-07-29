@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/adlm/Home";
 import HomeA from "./pages/MarketPlace/HomeA";
 import About from "./pages/adlm/About";
@@ -23,15 +23,15 @@ import PrivateRoute from "./components/PrivateRoute";
 import UpdateProduct from "./pages/MarketPlace/UpdateProduct";
 import MainLayout from "./pages/MarketPlace/MainLayout";
 import AuthForm from "./components/auth/AuthForm";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
 
-
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <Routes>
         <Route element={<MainLayout />}>
-          
           <Route path="/" element={<Home />} />
           <Route path="/market" element={<HomeA />} />
           <Route path="/about" element={<About />} />
@@ -58,8 +58,8 @@ export default function App() {
               <Route path="/edit-product/:productId" element={<UpdateProduct />} />
             </Route>
           </Route>
-
         </Route>
+        <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
       <AuthForm />
     </BrowserRouter>

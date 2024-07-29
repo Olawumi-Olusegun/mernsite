@@ -344,8 +344,8 @@ export default function Profile() {
         <div className="bg-[#FFFFFF] rounded  w-full p-5 flex-grow">
           {activeView === views.Personal_Details && (
             <>
-              <div className="border-b w-full p-5 py-4">
-                <h2 className="font-semibold ">Personal Details</h2>
+              <div className="border-b w-full">
+                <h2 className="font-semibold p-5 py-4">Personal Details</h2>
               </div>
               <form
                 className="flex flex-col gap-4 md:p-10"

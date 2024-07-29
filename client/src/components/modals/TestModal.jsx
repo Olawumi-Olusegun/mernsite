@@ -1,23 +1,19 @@
-
 import React, { createContext, useContext, useEffect } from 'react'
-
 
 const ModalContext = createContext();
 
-
-
 const TestModal = ({children, isOpen, onClose}) => {
 
-    const handleEscKey = (event) => {
+    const handleEscKeyPress = (event) => {
         if(event.keyCode === 27) {
             onClose();
         }
     }
 
     useEffect(() => {
-        document.addEventListener("keydown", handleEscKey);
-        return () => document.removeEventListener("keydown", handleEscKey)
-    }, [])
+        document.addEventListener("keydown", handleEscKeyPress);
+        return () => document.removeEventListener("keydown", handleEscKeyPress);
+    }, []);
 
     if(!isOpen) return null;
 

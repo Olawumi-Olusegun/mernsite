@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
-    body {
-        @apply bg-white bg-opacity-50 backdrop-blur-md min-h-dvh scroll-smooth;
-    }
+  body {
+    @apply bg-white bg-opacity-50 backdrop-blur-md min-h-dvh scroll-smooth;
+  }
 }

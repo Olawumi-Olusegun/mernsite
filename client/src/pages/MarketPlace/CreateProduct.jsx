@@ -42,6 +42,14 @@ export default function CreateProduct() {
   const [loading, setLoading] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
+  const imageDetails = [
+    {
+      name: "",
+      ext: "",
+      size: "",
+    }
+  ];
+
   const navigate = useNavigate();
 
   const [steps, setSteps] = useState(1);
@@ -93,6 +101,7 @@ export default function CreateProduct() {
   };
 
   const uploadImageToFirebase = async (file) => {
+
     const urls = [];
 
     if (!file) return;
@@ -108,7 +117,7 @@ export default function CreateProduct() {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(`Upload is ${progress}% done`);
+          console.log(`Upload is ${progress}% done`);
       },
       (error) => console.log(error),
       () =>
@@ -250,8 +259,8 @@ export default function CreateProduct() {
       toast.success("Product created");
       navigate(`/product/${data._id}`);
     } catch (error) {
-      setError(error.message);
-      toast.error(error.message);
+      setError(error?.message);
+      toast.error(error?.message);
     } finally {
       setLoading(false);
     }

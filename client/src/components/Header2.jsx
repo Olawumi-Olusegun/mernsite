@@ -23,10 +23,11 @@ const Header2 = () => {
 
 
   const handleChangeAuthUrl = (urlString) => {
+      window.scrollTo(0,0);
       navigate(`?auth=${urlString}`);
   }
 
-  const [windowSize, setWindowSize] = useState(window.innerWidth ?? 0);
+  const [windowSize] = useState(window.innerWidth ?? 0);
 
   const closeNavMenu = useCallback(() => setIsMenuOpen(false), []);
 
@@ -47,6 +48,10 @@ const Header2 = () => {
 
       const data = await res.json();
 
+      if(!res.ok) {
+        return alert(data?.message)
+      }
+
       dispatch(signOutSuccess(data));
 
       navigate("/");
@@ -55,30 +60,7 @@ const Header2 = () => {
     }
   };
 
-  const handleDeleteUser = async () => {
-    try {
-      dispatch(deleteUserStart());
 
-      const res = await fetch(
-        `${config.baseUrl}/api/user/delete/${currentUser._id}`,
-        {
-          method: "DELETE",
-        }
-      );
-
-      const data = await res.json();
-
-      if (data.success === false) {
-        dispatch(deleteUserFaliure(data.message));
-        return;
-      }
-
-      dispatch(deleteUserSuccess(data));
-      navigate("/");
-    } catch (error) {
-      dispatch(deleteUserFaliure(error.message));
-    }
-  };
 
   useEffect(() => {
     const handleScreenResize = () => {
@@ -89,7 +71,9 @@ const Header2 = () => {
 
     window.addEventListener("resize", handleScreenResize);
 
-    return () => window.removeEventListener("resize", handleScreenResize);
+    return () => {
+      window.removeEventListener("resize", handleScreenResize);
+    }
   }, [smallScreen]);
 
   return (
@@ -226,57 +210,50 @@ const Header2 = () => {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-3">
-          <div className="">
-            <ul className="flex items-center justify-between gap-2">
-              {!currentUser && (
-                <>
-                  <li onClick={() => handleChangeAuthUrl("sign-in")}>
-                    <button type="button" className="rounded-full px-3 py-2 font-semibold text-[#00263D] hover:text-opacity-70 duration-300 bg-opacity-10 flex items-center group">
-                      <span className="">Sign In</span>
-                    </button>
-                  </li>
-                  <li onClick={() => handleChangeAuthUrl("sign-up")}>
-                    <button type="button" className="rounded-full px-3 py-2 font-semibold text-[#00263D] bg-gray-900 bg-opacity-10 flex items-center group">
-                      <span className="">Sign Up</span>
-                      <MdKeyboardArrowRight className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition ease-in-out duration-200 mt-1" />
-                    </button>
-                  </li>
-                </>
-              )}
-              {currentUser && (
-                <>
-                  <Link to="/profile" className="">
-                    <img
-                      src={
-                        currentUser?.avatar ? currentUser?.avatar :
-                        "https://placehold.jp/150x150.png"
-                      }
-                      alt="profile image"
-                      className="rounded-full h-7 w-7 object-cover pointer-events-none"
-                    />
-                  </Link>
-                </>
-              )}
-            </ul>
-          </div>
+          <div className="flex items-center gap-x-2">
 
-          <div className="md:hidden">
-            <button onClick={toggleNavMenu} className="text-white">
-              {isMenuOpen ? (
-                <IoCloseSharp size={20} className="text-blue-950" />
-              ) : (
-                <RxHamburgerMenu size={20} className="text-blue-950" />
-              )}
+            {!currentUser &&
+              <div className="flex items-center gap-x-1">
+                <button onClick={() => handleChangeAuthUrl("sign-in")} type="button" className="rounded-full px-3 py-2 font-semibold text-[#00263D] hover:text-opacity-70 duration-300 bg-opacity-10 flex items-center group">
+                  <span>Sign In</span>
+                </button>
+
+                <button onClick={() => handleChangeAuthUrl("sign-up")} type="button" className="rounded-full px-3 py-2 font-semibold text-[#00263D] bg-gray-900 bg-opacity-10 flex items-center group">
+                  <span>Sign Up</span>
+                  <MdKeyboardArrowRight className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition ease-in-out duration-200" />
+                </button>
+              </div>
+            }
+
+            {currentUser && (
+                <Link to="/profile">
+                  <img
+                    src={
+                      currentUser?.avatar
+                      ? currentUser?.avatar
+                      : "https://placehold.jp/150x150.png"
+                    }
+                    alt="profile image"
+                    className="rounded-full h-7 w-7 object-cover pointer-events-none"
+                  />
+                </Link>
+            )}
+
+            <button onClick={toggleNavMenu} type="button" className="text-white md:hidden rounded-full p-2 hover:bg-gray-100 duration-300">
+              {isMenuOpen
+                ? <IoCloseSharp size={20} className="text-blue-950" />
+                : <RxHamburgerMenu size={20} className="text-blue-950" />
+              }
             </button>
-          </div>
-        </div>
+
+
+          </div> 
       </div>
 
       {/* MOBILE */}
       {isMenuOpen && (
-        <nav className="w-full h-dvh border-t flex flex-col md:hidden relative ">
-          <ul className="flex flex-col items-center gap-y-4 text-white font-semibold my-5 ">
+        <nav className="w-full min-h-[calc(100dvh_-_4.05rem)] border-t flex flex-col md:hidden relative ">
+          <ul className="flex flex-col  items-center gap-y-4 text-white font-semibold my-5 ">
             <li onClick={closeNavMenu} className="relative group px-1 py-2">
               <Link
                 to="/market"
